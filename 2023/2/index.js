@@ -6,36 +6,33 @@ solution(
   "./input.txt",
   "./test.txt",
   (contents) =>
-    parseByDefinition(
-      [
-        "\n",
-        [[String, " ", Number], ": ", ["; ", [", ", [Number, " ", String]]]],
-      ],
-      contents
-    ).map(([[, id], sets]) => ({
-      id,
-      foldedSets: reduceBy(
-        (acc, [amount]) => max(amount, acc),
-        0,
-        prop(1),
-        unnest(sets)
-      ),
-    })),
-  (foldedGames) => {
-    const gamesThatSatisfies = foldedGames.filter(
-      (games) =>
-        games.foldedSets.red <= 12 &&
-        games.foldedSets.green <= 13 &&
-        games.foldedSets.blue <= 14
-    );
-
-    return o(sum, map(prop("id")))(gamesThatSatisfies);
+  {
+    contents.split('\n').map(line => {
+      return {
+        id: line.match(/Game (\d+)/)[1],
+        foldedSets: {
+          red: sum(map(Number.parse)(line.match(/(\d+) red/g))),
+          green: sum(map(Number.parse)(line.match(/(\d+) red/g))),
+          blue: sum(map(Number.parse)(line.match(/(\d+) red/g)))
+        }
+      }
+    })
   },
-  (foldedGames) => {
-    const sndPart = foldedGames.map(
-      (game) =>
-        game.foldedSets.red * game.foldedSets.blue * game.foldedSets.green
-    );
-    return sum(sndPart);
+  (input) => {
+    // const gamesThatSatisfies = foldedGames.filter(
+    //   (games) =>
+    //     games.foldedSets.red <= 12 &&
+    //     games.foldedSets.green <= 13 &&
+    //     games.foldedSets.blue <= 14
+    // );
+
+    // return o(sum, map(prop("id")))(gamesThatSatisfies);
+  },
+  (input) => {
+    // const sndPart = foldedGames.map(
+    //   (game) =>
+    //     game.foldedSets.red * game.foldedSets.blue * game.foldedSets.green
+    // );
+    // return sum(sndPart);
   }
 );
