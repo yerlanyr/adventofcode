@@ -54,10 +54,10 @@ export function sortAndJoin(intervals) {
   }
   return joinedIntervals;
 }
-function pointInInterval(x, [a, b]) {
+export function pointInInterval(x, [a, b]) {
   return x >= a && x <= b;
 }
-function invertInterval(a) {
+export function invertInterval(a) {
   let res = [];
   if (a[0] !== 0) {
     res.push([0, a[0] - 1]);
