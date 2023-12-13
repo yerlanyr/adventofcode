@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "md5": "^2.3.0",
-    "ramda": "^0.28.0",
+    "ramda": "^0.29.1",
     "yocto-queue": "^1.0.0"
   },
   "devDependencies": {
